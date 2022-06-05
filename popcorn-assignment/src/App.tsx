@@ -101,26 +101,31 @@ function App() {
           ) : (
             <>
               <h5 className="text-xl my-4">Search Results</h5>
+
               <table className="table-auto w-fit mx-auto mt-8">
-                <tr>
-                  <th>Author</th>
-                  <th>Title</th>
-                  <th>Publisher</th>
-                </tr>
-                {results.map((result: IVolume) => (
-                  <tr key={result.id}>
-                    <td>{result.volumeInfo.authors?.join(", ") || "-"}</td>
-                    <td>{result.volumeInfo.title || "-"}</td>
-                    <td>{result.volumeInfo.publisher || "-"}</td>
-                    <td>
-                      <button
-                        onClick={() => updateReadingList(result)}
-                        className="bg-slate-200 px-2 py-px rounded ml-1">
-                        Add To List
-                      </button>
-                    </td>
+                <thead>
+                  <tr>
+                    <th>Author</th>
+                    <th>Title</th>
+                    <th>Publisher</th>
                   </tr>
-                ))}
+                </thead>
+                <tbody>
+                  {results.map((result: IVolume) => (
+                    <tr key={result.id}>
+                      <td>{result.volumeInfo.authors?.join(", ") || "-"}</td>
+                      <td>{result.volumeInfo.title || "-"}</td>
+                      <td>{result.volumeInfo.publisher || "-"}</td>
+                      <td>
+                        <button
+                          onClick={() => updateReadingList(result)}
+                          className="bg-slate-200 px-2 py-px rounded ml-1">
+                          Add To List
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </>
           )}
@@ -131,18 +136,22 @@ function App() {
         <>
           <h5 className="text-xl my-4">Reading List</h5>
           <table className="table-auto w-fit mx-auto mt-8">
-            <tr>
-              <th>Author</th>
-              <th>Title</th>
-              <th>Publisher</th>
-            </tr>
-            {readingList.map((item: IVolume) => (
-              <tr key={item.id}>
-                <td>{item.volumeInfo.authors?.join(", ") || "-"}</td>
-                <td>{item.volumeInfo.title || "-"}</td>
-                <td>{item.volumeInfo.publisher || "-"}</td>
+            <thead>
+              <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Publisher</th>
               </tr>
-            ))}
+            </thead>
+            <tbody>
+              {readingList.map((item: IVolume) => (
+                <tr key={item.id}>
+                  <td>{item.volumeInfo.authors?.join(", ") || "-"}</td>
+                  <td>{item.volumeInfo.title || "-"}</td>
+                  <td>{item.volumeInfo.publisher || "-"}</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </>
       ) : null}
